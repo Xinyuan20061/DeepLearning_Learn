@@ -6,7 +6,7 @@ from network_rnn import EncoderRNN,DecoderRNN_withAttention
 from data_process import MAX_LENGTH,device,SOS_token,EOS_token,get_dataloader,my_getdata
 from matplotlib import pyplot as plt
 
-epochs=100
+epochs=5
 lr=1e-4
 teacher_forcing_ratio=0.5
 print_interval_num=100
@@ -126,9 +126,6 @@ def Train_seq2seq():
             if item % print_interval_num==0:
                 print(f"Epoch [{epoch}/{epochs}], Step [{item}/{len(dataloader)}], Loss: {loss:.4f}")
 
-
-            if item>100:
-                break
 
         #训练时间长，每轮训练完保存一次模型
         torch.save(encoder_rnn.state_dict(), f"./model/encoder_rnn.pth")
